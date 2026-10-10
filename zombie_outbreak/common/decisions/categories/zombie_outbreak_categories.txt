@@ -1,0 +1,6 @@
+# Zombie Outbreak - decision category that holds the Necrotech research projects.
+
+zombie_research_category = {
+	icon = zombie_research
+	picture = GFX_decision_cat_picture_zombie_research
+}

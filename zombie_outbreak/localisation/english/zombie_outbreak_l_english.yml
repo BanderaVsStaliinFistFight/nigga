@@ -1,8 +1,8 @@
 ﻿l_english:
- # Tech-tree tab and research category
- zombie_folder:0 "Necrotech"
- zombie_folder_desc:0 "Reanimation research: raise the dead and send them to the front."
- zombie_tech:0 "Reanimation"
+ # Decision category for the Necrotech research projects
+ zombie_research_category:0 "Necrotech Research"
+ zombie_research_category_desc:0 "Our Reanimation Laboratory can raise the dead and turn them into soldiers. Each project takes time and political power, and the laboratory works on one project at a time. While a project runs, the scientists it borrows slow our other research by 5%."
+ zombie_lab_free_tt:0 "The Reanimation Laboratory is not busy with another project"
 
  # Units
  zombie_horde:0 "Zombie Horde"
@@ -47,3 +47,25 @@
  zombie_infected_hounds_desc:0 "The agent works on animals too. Infected dogs make excellent scouts. Unlocks the Infected Hounds support company."
  zombie_pack_hunters:0 "Pack Hunters"
  zombie_pack_hunters_desc:0 "Training the hounds to hunt in packs makes them faster, more dangerous and better at finding the enemy."
+
+ # Research projects (decisions)
+ zombie_research_reanimation:0 "Research: Reanimation Experiments"
+ zombie_research_reanimation_desc:0 "Unlocks the §YZombie Horde§! battalion and §YReanimation Serum I§!."
+ zombie_research_virulent_strain:0 "Research: Virulent Strain"
+ zombie_research_virulent_strain_desc:0 "Zombie Hordes and Brutes: §G+10%§! soft attack and breakthrough. Infected Hounds: §G+10%§! soft attack."
+ zombie_research_stabilised_serum:0 "Research: Stabilised Serum"
+ zombie_research_stabilised_serum_desc:0 "Unlocks §YReanimation Serum II§!."
+ zombie_research_infected_hounds:0 "Research: Infected Hounds"
+ zombie_research_infected_hounds_desc:0 "Unlocks the §YInfected Hounds§! support company."
+ zombie_research_necrotic_brutes:0 "Research: Necrotic Brutes"
+ zombie_research_necrotic_brutes_desc:0 "Unlocks the §YZombie Brutes§! battalion."
+ zombie_research_relentless_hunger:0 "Research: Relentless Hunger"
+ zombie_research_relentless_hunger_desc:0 "All zombie units: §G+5§! organisation. Hordes and Brutes also recover organisation faster."
+ zombie_research_pack_hunters:0 "Research: Pack Hunters"
+ zombie_research_pack_hunters_desc:0 "Infected Hounds: §G+1§! recon, §G+20%§! soft attack, §G+10%§! speed."
+ zombie_research_bone_plating:0 "Research: Bone Plating"
+ zombie_research_bone_plating_desc:0 "Zombie Hordes: §G+10%§! defense. Zombie Brutes: §G+20%§! defense, §G+10%§! breakthrough."
+ zombie_research_perfected_serum:0 "Research: Perfected Serum"
+ zombie_research_perfected_serum_desc:0 "Unlocks §YReanimation Serum III§!."
+ zombie_research_apex_strain:0 "Research: Apex Strain"
+ zombie_research_apex_strain_desc:0 "Zombie Hordes and Brutes: §G+15%§! soft attack, §G+10%§! breakthrough, §G+10§! organisation, §G+10%§! speed. Infected Hounds: §G+10§! organisation."

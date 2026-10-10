@@ -1,7 +1,6 @@
 """Minimal reader for Paradox (Clausewitz) script files.
 
-Shared by install.py (to find windows inside countrytechtreeview.gui) and
-validate.py (to cross-check the mod's script files). Standard library only.
+Used by validate.py to cross-check the mod's script files. Standard library only.
 """
 
 import re
@@ -50,11 +49,6 @@ class Block:
     def values(self):
         """Bare words in a list block such as `categories = { a b }`."""
         return [k for k, v in self.entries if v is None]
-
-    @property
-    def name(self):
-        n = self.get("name")
-        return n if isinstance(n, str) else None
 
 
 class ParseError(Exception):
@@ -112,15 +106,3 @@ def parse(text):
 def line_of(text, offset):
     return text.count("\n", 0, max(offset, 0)) + 1
 
-
-def walk(block):
-    """Yield every nested Block (depth first)."""
-    for _, v in block.entries:
-        if isinstance(v, Block):
-            yield v
-            yield from walk(v)
-
-
-def find_named(block, name, key=None):
-    """All descendant blocks whose `name = "..."` equals name."""
-    return [b for b in walk(block) if b.name == name and (key is None or b.key == key)]

@@ -1,9 +1,12 @@
 # Zombie Outbreak – a Hearts of Iron IV mod
 
 Raise the dead and send them to the front. This mod adds **zombie battalions you
-research and train like any other unit**: a new **Necrotech** research tab, a
-new **Reanimation Serum** equipment line that you produce in military
-factories, and three new battalions for the division designer.
+research and train like any other unit**: ten **Necrotech** research projects, a
+**Reanimation Serum** equipment line that you produce in military factories,
+and three new battalions for the division designer.
+
+It's a normal mod. It doesn't touch your game folder or replace any base-game
+file. Drop it in your mod folder and enable it in the launcher.
 
 ![thumbnail](zombie_outbreak/thumbnail.png)
 
@@ -25,97 +28,77 @@ in mountains.
 
 ### Equipment (production)
 
-| Equipment | Year | Soft atk | Hard atk | Piercing | Defense | Breakthrough | Speed | Cost (IC) | Resources |
-|---|---|---|---|---|---|---|---|---|---|
-| Reanimation Serum I | 1936 | 7 | 0.5 | 1 | 15 | 6 | 3.5 | 0.35 | 1 steel |
-| Reanimation Serum II | 1938 | 10 | 0.8 | 1.5 | 19 | 8 | 3.5 | 0.45 | 1 steel |
-| Reanimation Serum III | 1942 | 14 | 1.2 | 2 | 24 | 11 | 4 | 0.55 | 1 steel, 1 chromium |
+| Equipment | Soft atk | Hard atk | Piercing | Defense | Breakthrough | Speed | Cost (IC) | Resources |
+|---|---|---|---|---|---|---|---|---|
+| Reanimation Serum I | 7 | 0.5 | 1 | 15 | 6 | 3.5 | 0.35 | 1 steel |
+| Reanimation Serum II | 10 | 0.8 | 1.5 | 19 | 8 | 3.5 | 0.45 | 1 steel |
+| Reanimation Serum III | 14 | 1.2 | 2 | 24 | 11 | 4 | 0.55 | 1 steel, 1 chromium |
 
 (Vanilla Infantry Equipment I: 6 / 1 / 4 / 22 / 3, speed 4.) Serum is weak
 against tanks: build anti-tank support for zombie divisions.
 
-### Research: the Necrotech tab
+### Research: Necrotech projects (Decisions screen)
+
+Zombie research runs in your own **Reanimation Laboratory**, found in the
+**Decisions** screen under **Necrotech Research**. Each project costs political
+power and takes a set number of days; when it finishes you get the technology,
+exactly as if you had researched it. The laboratory runs one project at a time,
+and while it is busy your normal research is 5% slower.
 
 ```
-1936                     Reanimation Experiments  ── unlocks Zombie Horde + Serum I
-                 ┌───────────────┼────────────────┐
-1938      Virulent Strain   Stabilised Serum   Infected Hounds  ── unlocks hounds
-          +10% atk/brk         Serum II              │
-                 │               │                   │
-1940      Necrotic Brutes   Relentless Hunger   Pack Hunters
-          unlocks brutes     +5 org, +morale    +1 recon, +20% atk, +10% speed
-                 │               │
-1942       Bone Plating      Perfected Serum
-          +def for zombies      Serum III
-                                 │
-1944                        Apex Strain  ── +15% atk, +10% brk, +10 org, +10% speed
+                     Reanimation Experiments  (15 PP, 90 days)  unlocks Zombie Horde + Serum I
+          ┌──────────────────┼───────────────────┐
+   Virulent Strain    Stabilised Serum     Infected Hounds  (20 PP, 90 days)  unlocks hounds
+   (25 PP, 100 d)     (25 PP, 100 d)                │
+   +10% atk/brk        Serum II                    │
+          │                  │                     │
+   Necrotic Brutes    Relentless Hunger     Pack Hunters  (20 PP, 90 days)
+   (30 PP, 120 d)     (30 PP, 120 d)        +1 recon, +20% atk, +10% speed
+   unlocks brutes     +5 org, faster recovery
+          │                  │
+   Bone Plating       Perfected Serum
+   (35 PP, 140 d)     (35 PP, 140 d)
+   +def for zombies    Serum III
+                             │
+                       Apex Strain  (50 PP, 160 days)
+                       +15% atk, +10% brk, +10 org, +10% speed
 ```
+
+Why not a tab in the tech tree? HoI4 only draws a tech-tree tab if the
+base game's tech-screen layout file has a slot for it. A mod can only add one
+by shipping a full replacement of that file, which breaks with every game
+patch and clashes with other mods. The Decisions screen needs no such file,
+so this mod works with any game version.
 
 ## Installing
 
-Hearts of Iron IV only shows a technology in the research screen if its tab
-exists in the game's `interface/countrytechtreeview.gui`. That file belongs to
-the base game and changes with every patch, so the mod can't ship a copy of it.
-Instead, the installer reads the file from **your** game install and adds the
-Necrotech tab to a copy inside the mod.
-
-### Option A: installer script (recommended)
-
-You need [Python 3.8 or newer](https://www.python.org/downloads/). No other packages are required.
-
 1. Download this repository (green **Code** button → **Download ZIP**) and unzip it.
-2. Open a terminal in the unzipped folder and run:
-   ```
-   python tools/install.py
-   ```
-   On Windows you can use `py tools/install.py`. The script finds your Steam
-   install and your `Documents/Paradox Interactive/Hearts of Iron IV` folder,
-   copies the mod into its `mod` folder and adds the research tab.
-   If it can't find the game (for example a GOG, Microsoft Store or non-default
-   Steam library), tell it where the game is:
-   ```
-   python tools/install.py --game-dir "D:/SteamLibrary/steamapps/common/Hearts of Iron IV"
-   ```
-   `--user-dir` does the same for the Documents folder, and `--tab-x` sets the
-   tab's pixel position if it overlaps another tab.
-3. Start the Paradox launcher, add **Zombie Outbreak** to your playset and play.
+2. Copy the **`zombie_outbreak`** folder and the **`zombie_outbreak.mod`** file into
+   your HoI4 mod folder:
+   - Windows: `Documents\Paradox Interactive\Hearts of Iron IV\mod\`
+   - Linux: `~/.local/share/Paradox Interactive/Hearts of Iron IV/mod/`
+   - macOS: `~/Documents/Paradox Interactive/Hearts of Iron IV/mod/`
+3. Open the Paradox launcher, add **Zombie Outbreak** to your playset and play.
 
-**Run the script again after every HoI4 update**, so the tech screen matches the new game version.
-
-### Option B: by hand
-
-1. Copy the `zombie_outbreak` folder and `zombie_outbreak.mod` into
-   `Documents/Paradox Interactive/Hearts of Iron IV/mod/`.
-2. Copy `<HoI4 install>/interface/countrytechtreeview.gui` into
-   `mod/zombie_outbreak/interface/`.
-3. In that copy, search for `name = "folder_tabs"`. Paste the contents of
-   [`tools/snippets/zombie_folder.gui`](tools/snippets/zombie_folder.gui) on a
-   new line directly **above** the `containerWindowType = {` line that opens
-   the `folder_tabs` window.
-4. Still in the `folder_tabs` window, paste
-   [`tools/snippets/zombie_folder_tab.gui`](tools/snippets/zombie_folder_tab.gui)
-   just before that window's closing `}`. Replace `{TAB_X}` with the largest
-   `x` used by the other `..._folder_tab` buttons plus 80.
+That's all. No scripts, and nothing in the game's install folder changes.
 
 ## Playing with zombies
 
-1. Open **Research**, then the **Necrotech** tab, and research **Reanimation Experiments**.
-2. In **Production**, add a line for **Reanimation Serum I**.
-3. In the **Division Designer**, build a template using **Zombie Horde**
-   battalions. Add **Infected Hounds** as a support company once researched.
+1. Open **Decisions** → **Necrotech Research** and start **Research: Reanimation Experiments**.
+2. When it finishes, add a production line for **Reanimation Serum I** in **Production**.
+3. In the **Division Designer**, build a template from **Zombie Horde** battalions.
+   Add **Infected Hounds** as a support company once you have researched them.
 4. Train it from the **Deployment** screen like any other division.
 
 To try it out quickly, open the console (`` ` `` or `~`) and type
-`research zombie_reanimation`, or `research all`.
+`research zombie_reanimation` to get the first technology immediately.
 
 ## Known limitations
 
 - **The AI doesn't use zombies.** It has no division templates for them, so
-  the techs are set never to be picked by the AI. Zombies are a player-only weapon.
+  it never starts the research projects. Zombies are a player-only weapon.
 - Zombies reuse the infantry 3D models and map counters. Only the 2D icons are new.
 - English text only. Other game languages show the English names.
-- The mod conflicts with other mods that also replace
-  `interface/countrytechtreeview.gui`, for example big tech-tree overhauls.
 - The mod hasn't been play-tested in a live game yet. If something doesn't
   show up, check `Documents/Paradox Interactive/Hearts of Iron IV/logs/error.log`
   for lines that mention `zombie` and open an issue with them.
@@ -123,28 +106,29 @@ To try it out quickly, open the console (`` ` `` or `~`) and type
 ## Repository layout
 
 ```
-zombie_outbreak.mod                  launcher file for a manual install
+zombie_outbreak.mod                  launcher file (copy next to the mod folder)
 zombie_outbreak/                     the mod itself
   descriptor.mod, thumbnail.png
-  common/technology_tags/            "zombie_tech" research category + "zombie_folder" tab
-  common/technologies/               the 10 Necrotech technologies
+  common/technologies/               the 10 Necrotech technologies (granted by decisions)
+  common/decisions/                  the Necrotech Research projects + category
   common/units/                      Zombie Horde, Zombie Brutes, Infected Hounds
   common/units/equipment/            Reanimation Serum I–III
-  interface/                         sprites (.gfx) and tech-item templates (.gui)
+  interface/                         sprites (.gfx)
   gfx/                               icons (generated, see below)
   localisation/english/              names and descriptions
 tools/
-  install.py                         installer + tech-screen patcher
-  snippets/                          the GUI blocks the installer inserts
   validate.py                        static checks for the whole mod
   generate_art.py                    redraws every icon (needs Pillow)
   clausewitz.py                      small parser for Paradox script files
 ```
 
+Every file the mod adds has `zombie` in its name, so it never replaces a
+base-game file.
+
 ## Development
 
 ```
-python tools/validate.py        # checks techs, units, equipment, localisation, sprites, textures
+python tools/validate.py        # checks techs, decisions, units, equipment, localisation, sprites
 pip install pillow
 python tools/generate_art.py    # regenerate all icons after editing the drawings
 ```

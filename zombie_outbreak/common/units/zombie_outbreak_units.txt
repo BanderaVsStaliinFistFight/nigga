@@ -1,5 +1,5 @@
 # Zombie Outbreak - trainable zombie battalions and support company.
-# Unlocked through the Necrotech research tab (common/technologies/zombie_outbreak.txt).
+# Unlocked by the Necrotech Research decisions (common/decisions/zombie_outbreak_decisions.txt).
 #
 # Design notes (vanilla infantry for reference: 25 HP, 60 org, 0.3 morale,
 # 1000 manpower, 90 training days, 1 suppression):

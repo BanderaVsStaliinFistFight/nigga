@@ -1,0 +1,388 @@
+# Zombie Outbreak - Necrotech research projects.
+#
+# Each decision is one research project. Starting it costs political power;
+# while it runs, the Reanimation Laboratory is busy (one project at a time)
+# and diverts some scientists (-5% research speed). When the timer runs out,
+# the matching technology from common/technologies/zombie_outbreak.txt is granted.
+
+zombie_research_category = {
+
+	zombie_research_reanimation = {
+		icon = zombie_research_skull
+
+		visible = {
+			NOT = { has_tech = zombie_reanimation }
+		}
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = zombie_lab_free_tt
+				NOT = { has_country_flag = zombie_lab_busy }
+			}
+		}
+
+		fire_only_once = yes
+
+		cost = 15
+		days_remove = 90
+
+		modifier = {
+			research_speed_factor = -0.05
+		}
+
+		complete_effect = {
+			set_country_flag = zombie_lab_busy
+		}
+
+		remove_effect = {
+			clr_country_flag = zombie_lab_busy
+			set_technology = { zombie_reanimation = 1 popup = yes }
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	zombie_research_virulent_strain = {
+		icon = zombie_research_biohazard
+
+		visible = {
+			NOT = { has_tech = zombie_virulent_strain }
+		}
+
+		available = {
+			has_tech = zombie_reanimation
+			custom_trigger_tooltip = {
+				tooltip = zombie_lab_free_tt
+				NOT = { has_country_flag = zombie_lab_busy }
+			}
+		}
+
+		fire_only_once = yes
+
+		cost = 25
+		days_remove = 100
+
+		modifier = {
+			research_speed_factor = -0.05
+		}
+
+		complete_effect = {
+			set_country_flag = zombie_lab_busy
+		}
+
+		remove_effect = {
+			clr_country_flag = zombie_lab_busy
+			set_technology = { zombie_virulent_strain = 1 popup = yes }
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	zombie_research_stabilised_serum = {
+		icon = zombie_research_serum
+
+		visible = {
+			NOT = { has_tech = zombie_stabilised_serum }
+		}
+
+		available = {
+			has_tech = zombie_reanimation
+			custom_trigger_tooltip = {
+				tooltip = zombie_lab_free_tt
+				NOT = { has_country_flag = zombie_lab_busy }
+			}
+		}
+
+		fire_only_once = yes
+
+		cost = 25
+		days_remove = 100
+
+		modifier = {
+			research_speed_factor = -0.05
+		}
+
+		complete_effect = {
+			set_country_flag = zombie_lab_busy
+		}
+
+		remove_effect = {
+			clr_country_flag = zombie_lab_busy
+			set_technology = { zombie_stabilised_serum = 1 popup = yes }
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	zombie_research_infected_hounds = {
+		icon = zombie_research_hound
+
+		visible = {
+			NOT = { has_tech = zombie_infected_hounds }
+		}
+
+		available = {
+			has_tech = zombie_reanimation
+			custom_trigger_tooltip = {
+				tooltip = zombie_lab_free_tt
+				NOT = { has_country_flag = zombie_lab_busy }
+			}
+		}
+
+		fire_only_once = yes
+
+		cost = 20
+		days_remove = 90
+
+		modifier = {
+			research_speed_factor = -0.05
+		}
+
+		complete_effect = {
+			set_country_flag = zombie_lab_busy
+		}
+
+		remove_effect = {
+			clr_country_flag = zombie_lab_busy
+			set_technology = { zombie_infected_hounds = 1 popup = yes }
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	zombie_research_necrotic_brutes = {
+		icon = zombie_research_skull
+
+		visible = {
+			NOT = { has_tech = zombie_necrotic_brutes }
+		}
+
+		available = {
+			has_tech = zombie_virulent_strain
+			custom_trigger_tooltip = {
+				tooltip = zombie_lab_free_tt
+				NOT = { has_country_flag = zombie_lab_busy }
+			}
+		}
+
+		fire_only_once = yes
+
+		cost = 30
+		days_remove = 120
+
+		modifier = {
+			research_speed_factor = -0.05
+		}
+
+		complete_effect = {
+			set_country_flag = zombie_lab_busy
+		}
+
+		remove_effect = {
+			clr_country_flag = zombie_lab_busy
+			set_technology = { zombie_necrotic_brutes = 1 popup = yes }
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	zombie_research_relentless_hunger = {
+		icon = zombie_research_biohazard
+
+		visible = {
+			NOT = { has_tech = zombie_relentless_hunger }
+		}
+
+		available = {
+			has_tech = zombie_stabilised_serum
+			custom_trigger_tooltip = {
+				tooltip = zombie_lab_free_tt
+				NOT = { has_country_flag = zombie_lab_busy }
+			}
+		}
+
+		fire_only_once = yes
+
+		cost = 30
+		days_remove = 120
+
+		modifier = {
+			research_speed_factor = -0.05
+		}
+
+		complete_effect = {
+			set_country_flag = zombie_lab_busy
+		}
+
+		remove_effect = {
+			clr_country_flag = zombie_lab_busy
+			set_technology = { zombie_relentless_hunger = 1 popup = yes }
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	zombie_research_pack_hunters = {
+		icon = zombie_research_hound
+
+		visible = {
+			NOT = { has_tech = zombie_pack_hunters }
+		}
+
+		available = {
+			has_tech = zombie_infected_hounds
+			custom_trigger_tooltip = {
+				tooltip = zombie_lab_free_tt
+				NOT = { has_country_flag = zombie_lab_busy }
+			}
+		}
+
+		fire_only_once = yes
+
+		cost = 20
+		days_remove = 90
+
+		modifier = {
+			research_speed_factor = -0.05
+		}
+
+		complete_effect = {
+			set_country_flag = zombie_lab_busy
+		}
+
+		remove_effect = {
+			clr_country_flag = zombie_lab_busy
+			set_technology = { zombie_pack_hunters = 1 popup = yes }
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	zombie_research_bone_plating = {
+		icon = zombie_research_skull
+
+		visible = {
+			NOT = { has_tech = zombie_bone_plating }
+		}
+
+		available = {
+			has_tech = zombie_necrotic_brutes
+			custom_trigger_tooltip = {
+				tooltip = zombie_lab_free_tt
+				NOT = { has_country_flag = zombie_lab_busy }
+			}
+		}
+
+		fire_only_once = yes
+
+		cost = 35
+		days_remove = 140
+
+		modifier = {
+			research_speed_factor = -0.05
+		}
+
+		complete_effect = {
+			set_country_flag = zombie_lab_busy
+		}
+
+		remove_effect = {
+			clr_country_flag = zombie_lab_busy
+			set_technology = { zombie_bone_plating = 1 popup = yes }
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	zombie_research_perfected_serum = {
+		icon = zombie_research_serum
+
+		visible = {
+			NOT = { has_tech = zombie_perfected_serum }
+		}
+
+		available = {
+			has_tech = zombie_relentless_hunger
+			custom_trigger_tooltip = {
+				tooltip = zombie_lab_free_tt
+				NOT = { has_country_flag = zombie_lab_busy }
+			}
+		}
+
+		fire_only_once = yes
+
+		cost = 35
+		days_remove = 140
+
+		modifier = {
+			research_speed_factor = -0.05
+		}
+
+		complete_effect = {
+			set_country_flag = zombie_lab_busy
+		}
+
+		remove_effect = {
+			clr_country_flag = zombie_lab_busy
+			set_technology = { zombie_perfected_serum = 1 popup = yes }
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	zombie_research_apex_strain = {
+		icon = zombie_research_biohazard
+
+		visible = {
+			NOT = { has_tech = zombie_apex_strain }
+		}
+
+		available = {
+			has_tech = zombie_perfected_serum
+			custom_trigger_tooltip = {
+				tooltip = zombie_lab_free_tt
+				NOT = { has_country_flag = zombie_lab_busy }
+			}
+		}
+
+		fire_only_once = yes
+
+		cost = 50
+		days_remove = 160
+
+		modifier = {
+			research_speed_factor = -0.05
+		}
+
+		complete_effect = {
+			set_country_flag = zombie_lab_busy
+		}
+
+		remove_effect = {
+			clr_country_flag = zombie_lab_busy
+			set_technology = { zombie_apex_strain = 1 popup = yes }
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+}

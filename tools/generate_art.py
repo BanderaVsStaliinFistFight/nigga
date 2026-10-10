@@ -378,29 +378,46 @@ def small_icon(kind):
     return finish(img, SMALL_W * 2, SMALL_H)
 
 
-# Tech-tree folder tab: frame 1 = selected, frame 2 = not selected.
-TAB_W, TAB_H = 91, 61
+# Decision screen: project icons, category icon and category picture.
+DECISION_W, DECISION_H = 33, 32
+CATEGORY_W, CATEGORY_H = 53, 40
+PICTURE_W, PICTURE_H = 114, 101
 
 
-def plate(d, x0, y0, x1, y1, bright):
-    d.rounded_rectangle(S(x0, y0, x1, y1), radius=4 * SS, fill=(28, 29, 27, 255))
-    d.rounded_rectangle(S(x0 + 2, y0 + 2, x1 - 2, y1 - 2), radius=3 * SS,
-                        fill=(78, 82, 76, 255) if bright else (62, 64, 60, 255))
-    d.rounded_rectangle(S(x0 + 5, y0 + 5, x1 - 5, y1 - 5), radius=2 * SS, fill=(14, 16, 14, 255))
-    for i in range(int(x0 + 6), int(x1 - 6), 3):  # mesh texture
-        d.line(S(i, y0 + 6, i, y1 - 6), fill=(24, 28, 24, 255), width=SS)
-    for rx, ry in ((x0 + 8, y0 + 8), (x1 - 8, y0 + 8), (x0 + 8, y1 - 8), (x1 - 8, y1 - 8)):
-        d.ellipse(S(rx - 2, ry - 2, rx + 2, ry + 2), fill=METAL_LIGHT)
-        d.ellipse(S(rx - 1, ry - 1, rx + 1, ry + 1), fill=INK)
+def decision_icon(kind):
+    img, d = canvas(DECISION_W, DECISION_H)
+    d.ellipse(S(1, 1, 32, 31), fill=INK)
+    d.ellipse(S(2.5, 2.5, 30.5, 29.5), fill=(44, 56, 40, 255))
+    if kind == "skull":
+        skull(d, 16.5, 12.5, 8)
+    elif kind == "serum":
+        syringe(d, 16, 16, 26, fill_frac=0.8)
+    elif kind == "hound":
+        hound(d, 15, 16, 11)
+    elif kind == "biohazard":
+        biohazard(d, 16.5, 16.5, 11)
+    return finish(img, DECISION_W, DECISION_H)
 
 
-def folder_tab():
-    img, d = canvas(TAB_W * 2, TAB_H)
-    plate(d, 3, 3, 88, 61, True)
-    skull(d, 45.5, 22, 12)
-    plate(d, TAB_W + 6, 9, TAB_W + 85, 46, False)
-    skull(d, TAB_W + 45.5, 22, 9, skin=(100, 140, 70, 255), eyes=(120, 200, 70, 255))
-    return finish(img, TAB_W * 2, TAB_H)
+def category_icon():
+    img, d = canvas(CATEGORY_W, CATEGORY_H)
+    biohazard(d, 26.5, 21, 17, color=(90, 150, 60, 255))
+    skull(d, 26.5, 16, 9)
+    return finish(img, CATEGORY_W, CATEGORY_H)
+
+
+def category_picture():
+    img, d = canvas(PICTURE_W, PICTURE_H)
+    for i in range(PICTURE_H):  # dark laboratory backdrop
+        g = int(22 + 30 * i / PICTURE_H)
+        d.rectangle(S(0, i, PICTURE_W, i + 1), fill=(g // 2, g, g // 2, 255))
+    d.rectangle(S(0, 0, PICTURE_W - 1, PICTURE_H - 1), outline=INK, width=2 * SS)
+    biohazard(d, 57, 40, 34, color=(40, 70, 30, 255))
+    skull(d, 57, 34, 20)
+    hand(d, 22, 92, 8)
+    hand(d, 97, 94, 6)
+    syringe(d, 54, 86, 44, fill_frac=0.7)
+    return finish(img, PICTURE_W, PICTURE_H)
 
 
 def thumbnail():
@@ -451,9 +468,14 @@ def main():
         write_dds(unit_icon(kind), MOD / f"gfx/interface/counters/divisions_large/zombie_{kind}_icon.dds")
         write_dds(small_icon(kind), MOD / f"gfx/texticons/zombie_{kind}_icon_small.dds")
 
-    write_dds(folder_tab(), MOD / "gfx/interface/techtree/zombie_folder_tab.dds")
+    decisions = MOD / "gfx/interface/decisions"
+    for kind in ("skull", "serum", "hound", "biohazard"):
+        write_dds(decision_icon(kind), decisions / f"zombie_research_{kind}.dds")
+    write_dds(category_icon(), decisions / "zombie_research_category.dds")
+    write_dds(category_picture(), decisions / "zombie_research_picture.dds")
+
     thumbnail().save(MOD / "thumbnail.png")
-    print(f"Wrote {len(icons) + 7} textures and thumbnail.png under {MOD}")
+    print(f"Wrote {len(icons) + 12} textures and thumbnail.png under {MOD}")
 
 
 if __name__ == "__main__":

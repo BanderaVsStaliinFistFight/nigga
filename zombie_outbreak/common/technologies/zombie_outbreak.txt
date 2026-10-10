@@ -1,77 +1,40 @@
-# Zombie Outbreak - the Necrotech research tree.
+# Zombie Outbreak - Necrotech technologies.
 #
-# Layout of the "Necrotech" tab (x = column, y = row; two rows per year):
+# These are researched through the "Necrotech Research" decision category
+# (common/decisions/zombie_outbreak_decisions.txt), not the tech tree: adding a
+# tech-tree tab would mean overriding the base game's tech-screen GUI file.
+# "allow = { always = no }" hides them from normal research; each research
+# decision grants its technology with set_technology when it finishes.
 #
-#   1936                    Reanimation Experiments
+# Research order (each project needs the one above it):
+#
+#                        Reanimation Experiments
 #                 /                  |                  \
-#   1938   Virulent Strain     Stabilised Serum      Infected Hounds
+#        Virulent Strain     Stabilised Serum      Infected Hounds
 #                 |                  |                   |
-#   1940   Necrotic Brutes     Relentless Hunger     Pack Hunters
+#        Necrotic Brutes     Relentless Hunger     Pack Hunters
 #                 |                  |
-#   1942   Bone Plating        Perfected Serum
+#        Bone Plating        Perfected Serum
 #                                    |
-#   1944                       Apex Strain
-#
-# The tab itself is added to the tech screen by tools/install.py, which patches
-# interface/countrytechtreeview.gui (see README.md).
-#
-# The AI does not research these (ai_will_do factor 0): it has no division
-# templates for zombies, so the research would be wasted.
+#                              Apex Strain
 
 technologies = {
 
-	@1936 = 0
-	@1938 = 2
-	@1940 = 4
-	@1942 = 6
-	@1944 = 8
-
-	@LEFT = 0
-	@MIDDLE = 3
-	@RIGHT = 6
-
 	zombie_reanimation = {
+		allow = { always = no }
 
 		enable_subunits = {
 			zombie_horde
 		}
-
 		enable_equipments = {
 			zombie_serum_equipment_1
-		}
-
-		path = {
-			leads_to_tech = zombie_virulent_strain
-			research_cost_coeff = 1
-		}
-		path = {
-			leads_to_tech = zombie_stabilised_serum
-			research_cost_coeff = 1
-		}
-		path = {
-			leads_to_tech = zombie_infected_hounds
-			research_cost_coeff = 1
-		}
-
-		research_cost = 1.5
-		start_year = 1936
-		folder = {
-			name = zombie_folder
-			position = { x = @MIDDLE y = @1936 }
-		}
-
-		categories = {
-			zombie_tech
-		}
-
-		ai_will_do = {
-			factor = 0
 		}
 	}
 
 	##### Left branch: making the dead deadlier #####
 
 	zombie_virulent_strain = {
+		allow = { always = no }
 
 		zombie_horde = {
 			soft_attack = 0.10
@@ -84,56 +47,18 @@ technologies = {
 		infected_hounds = {
 			soft_attack = 0.10
 		}
-
-		path = {
-			leads_to_tech = zombie_necrotic_brutes
-			research_cost_coeff = 1
-		}
-
-		research_cost = 2
-		start_year = 1938
-		folder = {
-			name = zombie_folder
-			position = { x = @LEFT y = @1938 }
-		}
-
-		categories = {
-			zombie_tech
-		}
-
-		ai_will_do = {
-			factor = 0
-		}
 	}
 
 	zombie_necrotic_brutes = {
+		allow = { always = no }
 
 		enable_subunits = {
 			zombie_brute
 		}
-
-		path = {
-			leads_to_tech = zombie_bone_plating
-			research_cost_coeff = 1
-		}
-
-		research_cost = 2
-		start_year = 1940
-		folder = {
-			name = zombie_folder
-			position = { x = @LEFT y = @1940 }
-		}
-
-		categories = {
-			zombie_tech
-		}
-
-		ai_will_do = {
-			factor = 0
-		}
 	}
 
 	zombie_bone_plating = {
+		allow = { always = no }
 
 		zombie_horde = {
 			defense = 0.10
@@ -142,53 +67,20 @@ technologies = {
 			defense = 0.20
 			breakthrough = 0.10
 		}
-
-		research_cost = 2.5
-		start_year = 1942
-		folder = {
-			name = zombie_folder
-			position = { x = @LEFT y = @1942 }
-		}
-
-		categories = {
-			zombie_tech
-		}
-
-		ai_will_do = {
-			factor = 0
-		}
 	}
 
 	##### Middle branch: better serum #####
 
 	zombie_stabilised_serum = {
+		allow = { always = no }
 
 		enable_equipments = {
 			zombie_serum_equipment_2
 		}
-
-		path = {
-			leads_to_tech = zombie_relentless_hunger
-			research_cost_coeff = 1
-		}
-
-		research_cost = 2
-		start_year = 1938
-		folder = {
-			name = zombie_folder
-			position = { x = @MIDDLE y = @1938 }
-		}
-
-		categories = {
-			zombie_tech
-		}
-
-		ai_will_do = {
-			factor = 0
-		}
 	}
 
 	zombie_relentless_hunger = {
+		allow = { always = no }
 
 		zombie_horde = {
 			max_organisation = 5
@@ -200,57 +92,19 @@ technologies = {
 		}
 		infected_hounds = {
 			max_organisation = 5
-		}
-
-		path = {
-			leads_to_tech = zombie_perfected_serum
-			research_cost_coeff = 1
-		}
-
-		research_cost = 2
-		start_year = 1940
-		folder = {
-			name = zombie_folder
-			position = { x = @MIDDLE y = @1940 }
-		}
-
-		categories = {
-			zombie_tech
-		}
-
-		ai_will_do = {
-			factor = 0
 		}
 	}
 
 	zombie_perfected_serum = {
+		allow = { always = no }
 
 		enable_equipments = {
 			zombie_serum_equipment_3
 		}
-
-		path = {
-			leads_to_tech = zombie_apex_strain
-			research_cost_coeff = 1
-		}
-
-		research_cost = 2.5
-		start_year = 1942
-		folder = {
-			name = zombie_folder
-			position = { x = @MIDDLE y = @1942 }
-		}
-
-		categories = {
-			zombie_tech
-		}
-
-		ai_will_do = {
-			factor = 0
-		}
 	}
 
 	zombie_apex_strain = {
+		allow = { always = no }
 
 		zombie_horde = {
 			soft_attack = 0.15
@@ -266,74 +120,26 @@ technologies = {
 		}
 		infected_hounds = {
 			max_organisation = 10
-		}
-
-		research_cost = 3
-		start_year = 1944
-		folder = {
-			name = zombie_folder
-			position = { x = @MIDDLE y = @1944 }
-		}
-
-		categories = {
-			zombie_tech
-		}
-
-		ai_will_do = {
-			factor = 0
 		}
 	}
 
 	##### Right branch: infected hounds #####
 
 	zombie_infected_hounds = {
+		allow = { always = no }
 
 		enable_subunits = {
 			infected_hounds
 		}
-
-		path = {
-			leads_to_tech = zombie_pack_hunters
-			research_cost_coeff = 1
-		}
-
-		research_cost = 1.5
-		start_year = 1938
-		folder = {
-			name = zombie_folder
-			position = { x = @RIGHT y = @1938 }
-		}
-
-		categories = {
-			zombie_tech
-		}
-
-		ai_will_do = {
-			factor = 0
-		}
 	}
 
 	zombie_pack_hunters = {
+		allow = { always = no }
 
 		infected_hounds = {
 			recon = 1
 			soft_attack = 0.20
 			maximum_speed = 0.10
-		}
-
-		research_cost = 1.5
-		start_year = 1940
-		folder = {
-			name = zombie_folder
-			position = { x = @RIGHT y = @1940 }
-		}
-
-		categories = {
-			zombie_tech
-		}
-
-		ai_will_do = {
-			factor = 0
 		}
 	}
 }
