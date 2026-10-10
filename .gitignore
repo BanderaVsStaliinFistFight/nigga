@@ -1,0 +1,5 @@
+# Generated from your own game files by tools/install.py --no-copy; never commit it.
+zombie_outbreak/interface/countrytechtreeview.gui
+
+__pycache__/
+*.pyc

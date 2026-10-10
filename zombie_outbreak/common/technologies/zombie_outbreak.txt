@@ -1,0 +1,339 @@
+# Zombie Outbreak - the Necrotech research tree.
+#
+# Layout of the "Necrotech" tab (x = column, y = row; two rows per year):
+#
+#   1936                    Reanimation Experiments
+#                 /                  |                  \
+#   1938   Virulent Strain     Stabilised Serum      Infected Hounds
+#                 |                  |                   |
+#   1940   Necrotic Brutes     Relentless Hunger     Pack Hunters
+#                 |                  |
+#   1942   Bone Plating        Perfected Serum
+#                                    |
+#   1944                       Apex Strain
+#
+# The tab itself is added to the tech screen by tools/install.py, which patches
+# interface/countrytechtreeview.gui (see README.md).
+#
+# The AI does not research these (ai_will_do factor 0): it has no division
+# templates for zombies, so the research would be wasted.
+
+technologies = {
+
+	@1936 = 0
+	@1938 = 2
+	@1940 = 4
+	@1942 = 6
+	@1944 = 8
+
+	@LEFT = 0
+	@MIDDLE = 3
+	@RIGHT = 6
+
+	zombie_reanimation = {
+
+		enable_subunits = {
+			zombie_horde
+		}
+
+		enable_equipments = {
+			zombie_serum_equipment_1
+		}
+
+		path = {
+			leads_to_tech = zombie_virulent_strain
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = zombie_stabilised_serum
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = zombie_infected_hounds
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		start_year = 1936
+		folder = {
+			name = zombie_folder
+			position = { x = @MIDDLE y = @1936 }
+		}
+
+		categories = {
+			zombie_tech
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	##### Left branch: making the dead deadlier #####
+
+	zombie_virulent_strain = {
+
+		zombie_horde = {
+			soft_attack = 0.10
+			breakthrough = 0.10
+		}
+		zombie_brute = {
+			soft_attack = 0.10
+			breakthrough = 0.10
+		}
+		infected_hounds = {
+			soft_attack = 0.10
+		}
+
+		path = {
+			leads_to_tech = zombie_necrotic_brutes
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		start_year = 1938
+		folder = {
+			name = zombie_folder
+			position = { x = @LEFT y = @1938 }
+		}
+
+		categories = {
+			zombie_tech
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	zombie_necrotic_brutes = {
+
+		enable_subunits = {
+			zombie_brute
+		}
+
+		path = {
+			leads_to_tech = zombie_bone_plating
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		start_year = 1940
+		folder = {
+			name = zombie_folder
+			position = { x = @LEFT y = @1940 }
+		}
+
+		categories = {
+			zombie_tech
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	zombie_bone_plating = {
+
+		zombie_horde = {
+			defense = 0.10
+		}
+		zombie_brute = {
+			defense = 0.20
+			breakthrough = 0.10
+		}
+
+		research_cost = 2.5
+		start_year = 1942
+		folder = {
+			name = zombie_folder
+			position = { x = @LEFT y = @1942 }
+		}
+
+		categories = {
+			zombie_tech
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	##### Middle branch: better serum #####
+
+	zombie_stabilised_serum = {
+
+		enable_equipments = {
+			zombie_serum_equipment_2
+		}
+
+		path = {
+			leads_to_tech = zombie_relentless_hunger
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		start_year = 1938
+		folder = {
+			name = zombie_folder
+			position = { x = @MIDDLE y = @1938 }
+		}
+
+		categories = {
+			zombie_tech
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	zombie_relentless_hunger = {
+
+		zombie_horde = {
+			max_organisation = 5
+			default_morale = 0.1
+		}
+		zombie_brute = {
+			max_organisation = 5
+			default_morale = 0.1
+		}
+		infected_hounds = {
+			max_organisation = 5
+		}
+
+		path = {
+			leads_to_tech = zombie_perfected_serum
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		start_year = 1940
+		folder = {
+			name = zombie_folder
+			position = { x = @MIDDLE y = @1940 }
+		}
+
+		categories = {
+			zombie_tech
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	zombie_perfected_serum = {
+
+		enable_equipments = {
+			zombie_serum_equipment_3
+		}
+
+		path = {
+			leads_to_tech = zombie_apex_strain
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2.5
+		start_year = 1942
+		folder = {
+			name = zombie_folder
+			position = { x = @MIDDLE y = @1942 }
+		}
+
+		categories = {
+			zombie_tech
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	zombie_apex_strain = {
+
+		zombie_horde = {
+			soft_attack = 0.15
+			breakthrough = 0.10
+			max_organisation = 10
+			maximum_speed = 0.10
+		}
+		zombie_brute = {
+			soft_attack = 0.15
+			breakthrough = 0.10
+			max_organisation = 10
+			maximum_speed = 0.10
+		}
+		infected_hounds = {
+			max_organisation = 10
+		}
+
+		research_cost = 3
+		start_year = 1944
+		folder = {
+			name = zombie_folder
+			position = { x = @MIDDLE y = @1944 }
+		}
+
+		categories = {
+			zombie_tech
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	##### Right branch: infected hounds #####
+
+	zombie_infected_hounds = {
+
+		enable_subunits = {
+			infected_hounds
+		}
+
+		path = {
+			leads_to_tech = zombie_pack_hunters
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		start_year = 1938
+		folder = {
+			name = zombie_folder
+			position = { x = @RIGHT y = @1938 }
+		}
+
+		categories = {
+			zombie_tech
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	zombie_pack_hunters = {
+
+		infected_hounds = {
+			recon = 1
+			soft_attack = 0.20
+			maximum_speed = 0.10
+		}
+
+		research_cost = 1.5
+		start_year = 1940
+		folder = {
+			name = zombie_folder
+			position = { x = @RIGHT y = @1940 }
+		}
+
+		categories = {
+			zombie_tech
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+}

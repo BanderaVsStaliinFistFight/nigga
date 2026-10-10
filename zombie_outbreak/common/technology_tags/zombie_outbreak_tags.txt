@@ -1,0 +1,12 @@
+# Zombie Outbreak - research category and tech-tree folder.
+# Kept in its own file so the vanilla 00_technology.txt is not overwritten.
+
+technology_categories = {
+	zombie_tech
+}
+
+technology_folders = {
+	zombie_folder = {
+		ledger = army
+	}
+}

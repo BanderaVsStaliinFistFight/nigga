@@ -1,0 +1,9 @@
+			### ZOMBIE OUTBREAK: Necrotech tab (added by tools/install.py) ###
+			buttonType = {
+				name = "zombie_folder_tab"
+				position = { x = {TAB_X} y = 0 }
+				quadTextureSprite = "GFX_zombie_folder_tab"
+				frame = 1
+				clicksound = click_default
+			}
+			### END ZOMBIE OUTBREAK ###

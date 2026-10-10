@@ -1,0 +1,102 @@
+# Zombie Outbreak - reanimation serum.
+# Every zombie battalion "needs" serum the same way infantry needs rifles:
+# produce it in military factories, then train zombie divisions with it.
+# For comparison, vanilla Infantry Equipment I is
+# 22 defense / 3 breakthrough / 6 soft attack / 1 hard attack / 4 piercing.
+# Serum trades defense and piercing for soft attack and breakthrough.
+
+equipments = {
+
+	zombie_serum_equipment = {
+		year = 1936
+
+		is_archetype = yes
+		is_buildable = no
+		type = infantry
+		group_by = archetype
+
+		interface_category = interface_category_land
+
+		active = no
+
+		#Misc Abilities
+		reliability = 0.8
+		maximum_speed = 3.5
+
+		#Defensive Abilities
+		defense = 15
+		breakthrough = 6
+		hardness = 0
+		armor_value = 0
+
+		#Offensive Abilities
+		soft_attack = 7
+		hard_attack = 0.5
+		ap_attack = 1
+		air_attack = 0
+
+		#Space taken in convoy
+		lend_lease_cost = 1
+
+		build_cost_ic = 0.35
+		resources = {
+			steel = 1
+		}
+	}
+
+	# Reanimation Serum I - 1936
+	zombie_serum_equipment_1 = {
+		year = 1936
+
+		archetype = zombie_serum_equipment
+		priority = 10
+		visual_level = 0
+	}
+
+	# Reanimation Serum II - 1938
+	zombie_serum_equipment_2 = {
+		year = 1938
+
+		archetype = zombie_serum_equipment
+		parent = zombie_serum_equipment_1
+		priority = 10
+		visual_level = 1
+
+		reliability = 0.85
+
+		defense = 19
+		breakthrough = 8
+
+		soft_attack = 10
+		hard_attack = 0.8
+		ap_attack = 1.5
+
+		build_cost_ic = 0.45
+	}
+
+	# Reanimation Serum III - 1942
+	zombie_serum_equipment_3 = {
+		year = 1942
+
+		archetype = zombie_serum_equipment
+		parent = zombie_serum_equipment_2
+		priority = 10
+		visual_level = 2
+
+		reliability = 0.9
+		maximum_speed = 4
+
+		defense = 24
+		breakthrough = 11
+
+		soft_attack = 14
+		hard_attack = 1.2
+		ap_attack = 2
+
+		build_cost_ic = 0.55
+		resources = {
+			steel = 1
+			chromium = 1
+		}
+	}
+}

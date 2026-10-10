@@ -1,0 +1,196 @@
+# Zombie Outbreak - trainable zombie battalions and support company.
+# Unlocked through the Necrotech research tab (common/technologies/zombie_outbreak.txt).
+#
+# Design notes (vanilla infantry for reference: 25 HP, 60 org, 0.3 morale,
+# 1000 manpower, 90 training days, 1 suppression):
+#  - Zombies are cheap in manpower and fast to raise (the dead do not need drilling),
+#    hit hard and recover organisation quickly, but have low organisation and are
+#    poor at garrison duty.
+#  - They reuse the infantry 3D models and map counters; only the 2D icons are new.
+
+sub_units = {
+
+	# Line battalion: the shambling mass.
+	zombie_horde = {
+		sprite = infantry
+		map_icon_category = infantry
+
+		priority = 600
+		ai_priority = 0
+		active = no
+
+		type = {
+			infantry
+		}
+
+		group = infantry
+
+		categories = {
+			category_front_line
+			category_all_infantry
+			category_army
+		}
+
+		combat_width = 2
+
+		#Size Definitions
+		max_strength = 30
+		max_organisation = 45
+		default_morale = 0.5
+		manpower = 600
+
+		#Misc Abilities
+		training_time = 60
+		suppression = 0.5
+		weight = 0.5
+
+		supply_consumption = 0.05
+
+		need = {
+			zombie_serum_equipment = 100
+		}
+
+		urban = {
+			attack = 0.15
+			defence = 0.1
+		}
+		forest = {
+			attack = 0.1
+		}
+		jungle = {
+			attack = 0.1
+		}
+		marsh = {
+			movement = -0.1
+		}
+		mountain = {
+			attack = -0.1
+			movement = -0.1
+		}
+	}
+
+	# Heavy line battalion: stitched-together breakthrough monsters.
+	zombie_brute = {
+		sprite = infantry
+		map_icon_category = infantry
+
+		priority = 610
+		ai_priority = 0
+		active = no
+
+		type = {
+			infantry
+		}
+
+		group = infantry
+
+		categories = {
+			category_front_line
+			category_all_infantry
+			category_army
+		}
+
+		combat_width = 2
+
+		#Size Definitions
+		max_strength = 25
+		max_organisation = 35
+		default_morale = 0.5
+		manpower = 400
+
+		#Misc Abilities
+		training_time = 120
+		suppression = 0.5
+		weight = 0.75
+
+		supply_consumption = 0.09
+
+		# Multipliers on top of the serum's stats
+		soft_attack = 0.3
+		breakthrough = 0.5
+		defense = -0.25
+		maximum_speed = -0.15
+
+		need = {
+			zombie_serum_equipment = 150
+		}
+
+		urban = {
+			attack = 0.2
+		}
+		plains = {
+			attack = 0.05
+		}
+		marsh = {
+			movement = -0.2
+		}
+		mountain = {
+			attack = -0.15
+			movement = -0.15
+		}
+	}
+
+	# Support company: infected dogs that sniff out the living.
+	infected_hounds = {
+		sprite = infantry
+		map_icon_category = infantry
+
+		priority = 0
+		ai_priority = 0
+		active = no
+
+		type = {
+			infantry
+			support
+		}
+
+		group = support
+
+		categories = {
+			category_front_line
+			category_support_battalions
+			category_army
+		}
+
+		combat_width = 0
+
+		#Size Definitions
+		max_strength = 2
+		max_organisation = 20
+		default_morale = 0.5
+		manpower = 100
+
+		#Misc Abilities
+		training_time = 60
+		weight = 0.1
+		supply_consumption = 0.01
+		recon = 1
+
+		# Support nerfs to combat abilities
+		defense = -0.5
+		breakthrough = -0.5
+		soft_attack = -0.6
+		hard_attack = -0.9
+
+		essential = {
+			zombie_serum_equipment
+		}
+
+		need = {
+			zombie_serum_equipment = 20
+		}
+
+		forest = {
+			movement = 0.1
+		}
+		jungle = {
+			movement = 0.1
+		}
+		marsh = {
+			movement = 0.1
+		}
+		hills = {
+			movement = 0.1
+		}
+	}
+}
